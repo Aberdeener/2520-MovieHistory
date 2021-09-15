@@ -129,12 +129,14 @@ function refreshMovieList(moviesToAdd) {
 function validateMovieName(name) {
 
     if (name === undefined || name == '') {
-        alert('Please type in a movie name!')
+        alert('Please type in a movie name!');
         return false;
     }
 
     if (MOVIE_LIST_ITEMS.includes(name)) {
-        alert('That movie name is already on your list!')
+        alert('That movie name is already on your list!');
+        // We still want to increment in the movie history section, though
+        updateMovieWatches(name);
         return false;
     }
 
