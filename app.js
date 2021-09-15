@@ -1,12 +1,12 @@
 // Define constants.
-const NEW_MOVIE_NAME_INPUT = document.querySelector('input');
+const NEW_MOVIE_NAME_INPUT = document.querySelector("input");
 
 const MOVIE_LIST = document.getElementById('movie-list');
 let MOVIE_LIST_ITEMS = JSON.parse(window.localStorage.getItem('movie_list_items')) ?? [];
 
 const MOVIE_FILTER = document.getElementById('filter');
 
-const MOVIE_HISTORY_TABLE = document.getElementById('movieHistoryTable');
+const MOVIE_HISTORY_TABLE = document.querySelectorAll('h5')[2];
 const MOVIE_HISTORY_ITEMS = JSON.parse(window.localStorage.getItem('movie_history_items')) ?? [];
 
 // When the page loads, refresh the movie list and movie history table.
@@ -83,7 +83,9 @@ function updateMovieWatches(name) {
  */
 function refreshMovieHistoryTable() {
 
-    MOVIE_HISTORY_TABLE.innerHTML = '';
+    if (document.querySelector('table')) {
+        document.querySelector('table').remove();
+    }
 
     const table = document.createElement('table');
     table.classList.add('table', 'table-borderless');
@@ -118,7 +120,7 @@ function refreshMovieHistoryTable() {
 
     table.appendChild(tbody);
 
-    MOVIE_HISTORY_TABLE.appendChild(table);
+    MOVIE_HISTORY_TABLE.insertAdjacentElement('afterend', table);
 }
 
 /**
