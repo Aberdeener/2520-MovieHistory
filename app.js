@@ -25,6 +25,7 @@ function clearMovies(resetList = false) {
 
     if (resetList) {
         MOVIE_LIST_ITEMS = [];
+        window.localStorage.setItem('movie_list_items', JSON.stringify(MOVIE_LIST_ITEMS));
     }
 }
 
