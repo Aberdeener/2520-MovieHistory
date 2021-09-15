@@ -20,7 +20,7 @@ window.onload = () => {
  * 
  * @param {Boolean} resetList Whether to also clear the stored list of movie names
  */
-function clearMovies(resetList = false) {
+const clearMovies = (resetList = false) => {
     MOVIE_LIST.innerHTML = '';
 
     if (resetList) {
@@ -32,7 +32,7 @@ function clearMovies(resetList = false) {
 /**
  * Add a movie name to the "Movies" list.
  */
-function addMovie() {
+const addMovie = () => {
 
     let newMovieName = NEW_MOVIE_NAME_INPUT.value.toLowerCase();
 
@@ -55,7 +55,7 @@ function addMovie() {
  * 
  * @param {String} name Name of movie to update watches for.
  */
-function updateMovieWatches(name) {
+const updateMovieWatches = (name) => {
 
     let found = false;
 
@@ -81,7 +81,7 @@ function updateMovieWatches(name) {
 /**
  * Refresh the table which displays the movies and how many times they have been watched.
  */
-function refreshMovieHistoryTable() {
+const refreshMovieHistoryTable = () => {
 
     if (document.querySelector('table')) {
         document.querySelector('table').remove();
@@ -128,7 +128,7 @@ function refreshMovieHistoryTable() {
  * 
  * @param {Array} moviesToAdd Array of movie names to reload the list with.
  */
-function refreshMovieList(moviesToAdd) {
+const refreshMovieList = (moviesToAdd) => {
 
     clearMovies();
 
@@ -150,7 +150,7 @@ function refreshMovieList(moviesToAdd) {
  * @param {String} name Text to validate.
  * @return {Boolean} Whether the text is valid or not.
  */
-function validateMovieName(name) {
+const validateMovieName = (name) => {
 
     if (name === undefined || name == '') {
         alert('Please type in a movie name!');
@@ -170,14 +170,14 @@ function validateMovieName(name) {
 /**
  * Clear "New Movie" text input form field.
  */
-function clearInput() {
+const clearInput = () => {
     NEW_MOVIE_NAME_INPUT.value = '';
 }
 
 /**
  *  Refresh the movie list with only movies that contain the filtered string.
  */
-function filterMovies() {
+const filterMovies = () => {
 
     const movieFilterText = MOVIE_FILTER.value;
 
