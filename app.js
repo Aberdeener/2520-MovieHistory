@@ -1,12 +1,12 @@
 // Define constants.
-const NEW_MOVIE_NAME_INPUT = document.querySelector("input");
+const NEW_MOVIE_NAME_INPUT = document.querySelector('input');
 
 const MOVIE_LIST = document.getElementById('movie-list');
 let MOVIE_LIST_ITEMS = JSON.parse(window.localStorage.getItem('movie_list_items')) ?? [];
 
 const MOVIE_FILTER = document.getElementById('filter');
 
-const MOVIE_HISTORY_TABLE = document.getElementById('movie-history');
+const MOVIE_HISTORY_TABLE = document.getElementById('movieHistoryTable');
 const MOVIE_HISTORY_ITEMS = JSON.parse(window.localStorage.getItem('movie_history_items')) ?? [];
 
 // When the page loads, refresh the movie list and movie history table.
@@ -85,18 +85,40 @@ function refreshMovieHistoryTable() {
 
     MOVIE_HISTORY_TABLE.innerHTML = '';
 
-    let rowNumber = 0;
+    const table = document.createElement('table');
+    table.classList.add('table', 'table-borderless');
+
+    const tr = document.createElement('tr');
+
+    const nameCol = document.createElement('th');
+    nameCol.innerHTML = 'Name';
+    tr.appendChild(nameCol);
+
+    const watchesCol = document.createElement('th');
+    watchesCol.innerHTML = 'Watches';
+    tr.appendChild(watchesCol);
+
+    table.appendChild(tr)
+
+    const tbody = document.createElement('tbody');
 
     for (const movieHistory of MOVIE_HISTORY_ITEMS) {
-        const row = MOVIE_HISTORY_TABLE.insertRow(rowNumber);
-        const nameCell = row.insertCell(0);
-        nameCell.innerHTML = movieHistory.name;
+        const row = document.createElement('tr');
 
-        const watchesCell = row.insertCell(1);
-        watchesCell.innerHTML = movieHistory.watches;
-    
-        rowNumber++;
+        const nameCell = document.createElement('td');
+        nameCell.appendChild(document.createTextNode(movieHistory.name));
+        row.appendChild(nameCell);
+
+        const watchesCell = document.createElement('td');
+        watchesCell.appendChild(document.createTextNode(movieHistory.watches));
+        row.appendChild(watchesCell)
+
+        tbody.appendChild(row);
     }
+
+    table.appendChild(tbody);
+
+    MOVIE_HISTORY_TABLE.appendChild(table);
 }
 
 /**
